@@ -1,0 +1,58 @@
+{% if invoice %}
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+        <tr>
+                <td>Invoice Date:</td>
+                <td>{{invoice.invoice_date}}</td>
+        </tr>
+        <tr>
+                <td>Invoice No / Reference</td>
+                <td><b>{{invoice.number}}</b> {% if invoice.reference %}[{{invoice.reference}}]{% endif %}</td>
+        </tr>
+        <tr>
+                <td>Description</td>
+                <td>{{invoice.description}}</td>
+        </tr>
+        <tr>
+                <td>Untaxed Amount</td>
+                <td>{{invoice.untaxed_amount}}</td>
+        </tr>
+        <tr>
+                <td>Tax</td>
+                <td>{{invoice.tax_amount}} {{invoice.currency.code}}</td>
+        </tr>
+        <tr>
+                <td>Total Amount</td>
+                <td>{{invoice.total_amount}} {{invoice.currency.code}}</td>
+        </tr>
+        <tr>
+                <td>Total Amount To Pay</td>
+                <td>{{invoice.amount_to_pay}} {{invoice.currency.code}}</td>
+        </tr>
+        <tr>
+                <td>Amount payable today</td>
+                <td>
+                {% if invoice.amount_to_pay_today %}
+                <b>{{invoice.amount_to_pay_today}} {{invoice.currency.code}}</b>
+                {%else%}
+                {{invoice.amount_to_pay_today}} {{invoice.currency.code}}
+                {% endif %}
+                
+                </td>
+        </tr>
+        <tr>
+                <td>Invoice Status</td>
+                <td>{{invoice.state}}</td>
+        </tr>
+</table>
+<br/>
+{% if invoice.comment %}
+<h4>Comments:</h4>
+<br/>
+<p>{{invoice.comment}}</p>
+{% endif %}
+<a href="/accounts/invoices/{{invoice.id}}/download">
+Download ODT</a>
+<br/>
+<i>To know more about Open Documents visit:
+<a href="http://en.wikipedia.org/wiki/OpenDocument">Wikipedia-OpenDocument</a>
+</i>

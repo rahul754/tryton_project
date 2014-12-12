@@ -1,0 +1,33 @@
+{% if invoices %}
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+  <tr>
+    <th>Date</th>
+    <th>Invoice No [Reference]</th>
+    <th>Description</th>
+    <th>Untaxed</th>
+    <th>Tax</th>
+    <th>Total</th>
+    <th>Amount Due</th>
+    <th>Currency</th>
+    <th>State</th>
+  </tr>
+  {% for each in invoices %}
+  <tr>
+    <td><a href="/accounts/invoices/{{each.id}}/">{{each.invoice_date}}</a></td>
+    <td><a href="/accounts/invoices/{{each.id}}/"><b>{{each.number}}</b> 
+{%if each.reference%}
+[{{each.reference}}] 
+{% endif %}</a></td>
+    <td><a href="/accounts/invoices/{{each.id}}/">{{each.description}}</a></td>
+    <td>{{each.untaxed_amount}}</td>
+    <td>{{each.tax_amount}}</td>
+    <td>{{each.total_amount}}</td>
+    <td>{{each.amount_to_pay}}</td>
+    <td>{{each.currency.code}}</td>
+    <td>{{each.state}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<h4>You do not have any invoices in your account.</h4>
+{% endif %}
