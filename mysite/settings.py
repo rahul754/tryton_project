@@ -34,8 +34,14 @@ ENABLE_TRYTON = True
 TRYTOND_PATH ='user/local/tryton/tryond/'
 TRYTON_UN = 'apiuser'
 TRYTON_PW = 'apipass'
-TRYTON_DB = 'open'
+TRYTON_DB = os.path.join(BASE_DIR, 'db.sqlite3')
 
+
+TEMPLATE_DIR = (
+    '/home/pawan/Desktop/trytons/mysite/templates',
+    
+
+    )
 
 
 
@@ -49,6 +55,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts', 
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,7 +88,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Greenwich'
 
 USE_I18N = True
 
